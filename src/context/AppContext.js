@@ -51,7 +51,9 @@ export const AppReducer = (state, action) => {
                     currentExp.cost =  0;
                 }
                 return currentExp
-            })
+            }
+            
+            )
             action.type = "DONE";
             return {
                 ...state,
@@ -86,7 +88,7 @@ const initialState = {
         { id: "Human Resource", name: 'Human Resource', cost: 40 },
         { id: "IT", name: 'IT', cost: 500 },
     ],
-    currency: '£'
+    currency: '£ Pound'
 };
 
 // 2. Creates the context this is the thing our components import and use to get the state
