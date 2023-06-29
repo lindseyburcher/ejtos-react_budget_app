@@ -1,23 +1,30 @@
-import React, {useContext, useState } from 'react';
+import React, {useContext } from 'react';
 import {AppContext} from '../context/AppContext';
 
+
 const Currency = () => {
-    const { currency} = useContext(AppContext);
-    
-    const [action, setAction] = useState('');
+    const {dispatch } = useContext(AppContext);
+
+    const changeCurrency = (nc) => {
+        dispatch({
+            type: 'CHG_CURRENCY',
+            payload: nc,
+        })
+    }
 
     return (
-        <div className='alert alert-success'>
-            <span>Currency  
-            <select className="custom-select" id="inputGroupSelect02" onChange={(event) => setAction(event.target.value)}>
-                        
-                <option defaultValue value="£ Pound" name="GBP">£ Pound</option>
-                <option value="$ Dollar" name="USD">$ Dollar</option>
-                <option value="€ Euro" name="USD">€ Euro</option>
-                <option value="₹ Ruppee" name="USD">₹ Ruppee</option>
-            </select>
-            </span>
-        </div>
+        <div className='alert alert-success' style={{width:'180px',textAlign: "right",backgroundColor:'lightgreen',padding:'5px'}}>
+        {/*<label style={{marginLeft: '1rem' , backgroundColor:'lightgreen', color:'white'}} >Currency */}
+      <select className="custom-select" id="currency" onChange={(event)=>changeCurrency(event.target.value)} style={{backgroundColor:'lightgreen', color:'white',border:'none',padding:'0px'}}>
+        <option disable selected hidden value="£">Currency (£ Pound)</option>   
+        <option style={{color:'black'}} value="$">$ Dollar</option>
+        <option style={{color:'black'}} value="£">£ Pound</option>
+        <option style={{color:'black'}} value="€">€ Euro</option>
+        <option style={{color:'black'}} value="₹">₹ Rupee</option>
+      </select>	
+      {/*</label>*/}
+      	
+    </div>
     );
 };
 export default Currency;
